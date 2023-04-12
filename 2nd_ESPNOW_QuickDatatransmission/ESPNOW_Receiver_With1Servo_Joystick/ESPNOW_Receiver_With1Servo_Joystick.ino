@@ -167,7 +167,7 @@ void setUpServos()
 
 
 
-/* MOVE THE SENSOR ************************************************************/
+/* MOVE THE SERVOS ************************************************************/
 
 void moveServosBasedOnValues()
 {
@@ -206,13 +206,5 @@ void setup()
 
 void loop()
 {
-/*
-  //Check Signal lost.
-  unsigned long now = millis();
-  if ( now - lastRecvTime > SIGNAL_TIMEOUT ) 
-  {
-//    mapAndWriteValues();  
-
-  }
-*/  
+  
 }
