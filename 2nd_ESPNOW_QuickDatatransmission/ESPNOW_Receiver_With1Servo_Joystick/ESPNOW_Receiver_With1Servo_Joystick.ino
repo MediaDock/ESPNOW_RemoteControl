@@ -33,6 +33,8 @@
                 Based on the following examples: 
                 https://dronebotworkshop.com/esp-now/ 
                 https://github.com/un0038998/ESPNOW_Transmitter_Receiver
+                Library Used: 
+                https://github.com/khoih-prog/ESP32_S2_ISR_Servo
 */
 
 /* ESP-NOW GLOBALS *********************************************************/
@@ -206,5 +208,5 @@ void setup()
 
 void loop()
 {
-  
+
 }
