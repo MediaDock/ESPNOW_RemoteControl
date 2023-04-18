@@ -55,7 +55,7 @@ PacketData data;
 
 
 // Pins for the force sens ors
-//const int ForwardForceSensor1 = A0;
+const int ForwardForceSensor1 = A0;
 // const int UpForceSensor1 = A1;
 // ... not sure if necessary to define this
 
@@ -73,7 +73,6 @@ int mapAndAdjustPressureSensorValues(int value, bool reverse) {
     Serial.println(value);
     return value;
   }
-
   delay(50);
 }
 
@@ -132,9 +131,9 @@ void setup() {
 /* LOOP FUNCTION *************************************************************/
 
 void loop() {
-  data.ForwardForce0 = mapAndAdjustPressureSensorValues(analogRead(0), false);
+  data.ForwardForce0 = mapAndAdjustPressureSensorValues(analogRead(A0), false);
   Serial.print("Pressure Sensor LoopValue:");
-  Serial.println(analogRead(0));
+  Serial.println(analogRead(A0));
   // data.UpForce1 = mapAndAdjustPressureSensorValues(analogRead(1), false);
   // Serial.println(analogRead(1));
   // data.DownForce2 = mapAndAdjustPressureSensorValues(analogRead(2), false);

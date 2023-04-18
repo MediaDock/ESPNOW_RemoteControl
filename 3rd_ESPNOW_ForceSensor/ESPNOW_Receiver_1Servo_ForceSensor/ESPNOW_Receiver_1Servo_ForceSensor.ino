@@ -46,13 +46,15 @@
 #define SIGNAL_TIMEOUT 1000  
 unsigned long lastRecvTime = 0;
 
-struct PacketData {
+typedef struct PacketData 
+{
   byte ForwardForce0;
   // byte UpForce1;
   // byte DownForce2;
   // byte LeftForce3;
   // byte RightForce4;
-};
+} PacketData;
+
 PacketData receiverData;
 
 
@@ -91,6 +93,7 @@ int valDownForce2 = 0;
 int valLeftForce3 = 0;
 int valRightForce4 = 0;
 
+int position = 0;
 
 /* SETUP DEFAULT ***********************************************************/
 void setInputDefaultValues()
@@ -119,9 +122,10 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
 
 void mapAndWriteValues()
 {
-  valForwardForce0 = map(receiverData.lxAxisValue, 500, 5000, 0, 180);
+  valForwardForce0 = receiverData.ForwardForce0;
+  //valForwardForce0 = map(receiverData.ForwardForce0, 0, 5000, 0, 180);
   //Serial.print("valForwardForce0Mapped: ");
-  //Serial.println(valForwardForce0);
+  Serial.println(valForwardForce0);
   delay(100);
 
 /* UNCOMMENT / ADD AS FOLLOWS - IF MORE SERVOS ARE NEEDED */  
@@ -155,9 +159,9 @@ void setUpServos()
 
 
 	if (servoA0 != -1)
-		Serial.println(F("Setup Servo1 OK"));
+		Serial.println(F("Setup Servo0 OK"));
 	else
-		Serial.println(F("Setup Servo1 failed"));
+		Serial.println(F("Setup Servo0 failed"));
 
 /* UNCOMMENT / ADD AS FOLLOWS - IF MORE SERVOS ARE NEEDED */  
 /*
@@ -180,16 +184,16 @@ void moveServosBasedOnValues()
 /* ServoA0 THROTTLE (FORWARD- FORCE)*******************************************/
 
   // Full Swing
-  if ( ( servoA0 != -1) && ( valForwardForce0 > 600 ) )
+  if ( ( servoA0 != -1) && ( valForwardForce0 > 75 ) )
 	{
-		for (position = 0; position <= 180; position++)
+		for (position = 0; position <= 90; position++)
 		{
 			// goes from 0 degrees to 180 degrees
 			// in steps of 1 degree
 
 			if (position % 30 == 0)
 			{
-				Serial.print(F("Servo1 pos = "));
+				Serial.print(F("Servo0 pos = "));
 				Serial.print(position);
 			}
 
@@ -200,30 +204,28 @@ void moveServosBasedOnValues()
 
 		delay(100);
 
-		for (position = 180; position >= 0; position--)
+		for (position = 90; position >= 0; position--)
 		{
 			// goes from 180 degrees to 0 degrees
 			if (position % 30 == 0)
 			{
-				Serial.print(F("Servo1 pos = "));
+				Serial.print(F("Servo0 pos = "));
 				Serial.print(position);
-				Serial.print(F(", Servo2 pos = "));
-				Serial.println(180 - position);
 			}
 
 			ESP32_ISR_Servos.setPosition(servoA0, position);
 			// waits 30ms for the servo to reach the position
 			delay(30);
 		}
-
+  }
 
 /* ServoA1 TILT-UP (UP-FORCE) *************************************************/
 
-
+/*
   // Full Swing
   if ( ( servoA1 != -1) && ( valUpForce1 > 600 ) )
 	{
-		for (position = 0; position <= 180; position++)
+		for (position1 = 0; position1 <= 180; position++)
 		{
 			// goes from 0 degrees to 180 degrees
 			// in steps of 1 degree
@@ -256,14 +258,13 @@ void moveServosBasedOnValues()
 			// waits 30ms for the servo to reach the position
 			delay(30);
 		}
-
+  }
 
 
 /* UNCOMMENT / ADD AS FOLLOWS - IF MORE SERVOS ARE NEEDED */    
 //  ESP32_ISR_Servos.setPosition(servoA1, valUpForce1);
 //  ESP32_ISR_Servos.setPosition(servoA1, valUpForce1);
 }
-
 
 
 /* SETUP FUNCTION *************************************************************/
