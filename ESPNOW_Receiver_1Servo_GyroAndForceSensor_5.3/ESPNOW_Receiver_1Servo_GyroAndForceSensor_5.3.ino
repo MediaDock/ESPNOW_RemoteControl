@@ -80,8 +80,8 @@ PacketData receiverData;
 #define PIN_D18           18        // A0 = PIN_D18
 
 
-// Published values for SG90 servos; adjust if needed
-#define MIN_MICROS      800  //544
+// Millis PMW Values to stear your Servo (Min / Max) ; adjust if needed to reach the full Potential of your Servo
+#define MIN_MICROS      800  // 544
 #define MAX_MICROS      2450
 
 int servoA0  = -1;
@@ -95,7 +95,7 @@ int valLeftForce2 = 0;
 int valUpDownForce3 = 0;
 
 int maxSensorValue = valForwardForce0;  // Assume sensor1 is the largest initially
-int maxSensorIndex = 1;        // Variable to store the sensor number
+int maxSensorIndex = 1;        		// Variable to store the sensor number
 int UpDownNeutralIndex = 1;
 
 int position = 40;
@@ -106,9 +106,7 @@ int backFinDeg = 80;
 /* SETUP DEFAULT ***********************************************************/
 void setInputDefaultValues()
 { 
-  // The middle position for joystick. (254/2=127)
   receiverData.ForwardForce0 = valForwardForce0;
-  //receiverData.UpForce2 = valUpForce1;
 }
 
 
@@ -238,11 +236,10 @@ void setUpServos()
 
 	ESP32_ISR_Servos.useTimer(USE_ESP32_TIMER_NO);   //  Select ESP32 timer USE_ESP32_TIMER_NO
 	servoA0 = ESP32_ISR_Servos.setupServo(PIN_D18, MIN_MICROS, MAX_MICROS);
-  servoA1 = ESP32_ISR_Servos.setupServo(PIN_D17, MIN_MICROS, MAX_MICROS);
-  servoA2 = ESP32_ISR_Servos.setupServo(PIN_D9, MIN_MICROS, MAX_MICROS);
+  	servoA1 = ESP32_ISR_Servos.setupServo(PIN_D17, MIN_MICROS, MAX_MICROS);
+ 	servoA2 = ESP32_ISR_Servos.setupServo(PIN_D9, MIN_MICROS, MAX_MICROS);
 
 /* UNCOMMENT / ADD AS FOLLOWS - IF MORE SERVOS ARE NEEDED */  
-
 //	servoA3 = ESP32_ISR_Servos.setupServo(PIN_D8, MIN_MICROS, MAX_MICROS);
 
 
@@ -378,13 +375,7 @@ void moveServosBasedOnValues()
     delay(50);  
     Serial.println("Servo Up");      
   }
-
-
-
-
-/* UNCOMMENT / ADD AS FOLLOWS - IF MORE SERVOS ARE NEEDED */    
-//  ESP32_ISR_Servos.setPosition(servoA1, valUpForce1);
-//  ESP32_ISR_Servos.setPosition(servoA1, valUpForce1);
+	
 }
 
 
