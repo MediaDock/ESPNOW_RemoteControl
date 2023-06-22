@@ -40,7 +40,6 @@
 #include <WiFi.h>
 
 // REPLACE WITH YOUR RECEIVER MAC Address
-// QT Py ESP32-S2 Receiver MAC-Adress: D4:F9:8D:71:1E:9C
 uint8_t receiverMacAddress[] = {0xD4, 0xF9, 0x8D, 0x71, 0x1E, 0x9C}; 
 
 struct PacketData
