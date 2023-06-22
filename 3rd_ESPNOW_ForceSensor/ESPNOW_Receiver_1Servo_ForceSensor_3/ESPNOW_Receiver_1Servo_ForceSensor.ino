@@ -245,7 +245,7 @@ void moveServosBasedOnValues()
 		}
   }
 
-/* ServoA1 TILT-UP (UP-FORCE) *************************************************/
+/* Example to Add another SERVO: ServoA1 TILT-UP (UP-FORCE) *************************************************/
 
 /*
   // Full Swing
