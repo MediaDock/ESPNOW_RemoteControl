@@ -40,8 +40,6 @@
 #include <WiFi.h>
 
 // REPLACE WITH YOUR RECEIVER MAC Address
-// QT Py ESP32-S2 Receiver MAC-Adress: D4:F9:8D:71:1E:9C
-// QT Py ESP32-S2 Receiver MAC-Adress: D4:F9:8D:70:88:98 (Clone)
 uint8_t receiverMacAddress[] = { 0xD4, 0xF9, 0x8D, 0x71, 0x1E, 0x9C };
 
 struct PacketData {
@@ -57,7 +55,6 @@ PacketData data;
 // Pins for the force sens ors
 // const int ForwardForceSensor1 = A0;
 // const int UpForceSensor1 = A1;
-// ... not sure if necessary to define this
 
 // Force threshold
 const int ForceThreshold = 500;
@@ -96,7 +93,7 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
 void setup() {
 
   // Initialize the force sensors as input
-  // pinMode(ForwardForceSensor1, INPUT); // ... not sure if necessary to define this
+  // pinMode(ForwardForceSensor1, INPUT); 
 
   delay(50);
   Serial.begin(115200);
