@@ -379,12 +379,6 @@ void moveServosBasedOnValues()
     Serial.println("Servo Up");      
   }
 
-
-
-
-/* UNCOMMENT / ADD AS FOLLOWS - IF MORE SERVOS ARE NEEDED */    
-//  ESP32_ISR_Servos.setPosition(servoA1, valUpForce1);
-//  ESP32_ISR_Servos.setPosition(servoA1, valUpForce1);
 }
 
 
