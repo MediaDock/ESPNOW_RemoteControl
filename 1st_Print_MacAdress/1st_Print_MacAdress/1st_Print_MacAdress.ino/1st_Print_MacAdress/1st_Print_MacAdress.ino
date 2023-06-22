@@ -4,7 +4,7 @@
   Prints MAC Address to Serial Monitor
  
   DroneBot Workshop 2022
-  https://dronebotworkshop.com
+  https://dronebotworkshop.com/esp-now/
 */
  
 // Include WiFi Library
